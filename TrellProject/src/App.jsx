@@ -24,9 +24,9 @@ function App() {
 
     return (
       <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/table" exact element={<Table />} />
-        <Route path="/workspace" exact element={<Workspace/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/table" element={<Table />} />
+        <Route path="/workspace" element={<Workspace/>}/>
       </Routes>
     );
   };
