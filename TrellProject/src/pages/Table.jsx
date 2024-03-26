@@ -94,9 +94,9 @@ function Table() {
         setCurrentList(singleCards.id)
         setEditPopUpListNameStatus(true)
     }
-    const deleteList = async(singleCards) => {
+    const deleteList = async(listId) => {
         try {
-            await trelloAPI.deleteList(singleCards.id);
+            await trelloAPI.deleteList(listId);
         } catch(error) {
             console.error("Error deleting", error);
         }
