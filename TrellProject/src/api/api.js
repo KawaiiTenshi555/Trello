@@ -4,7 +4,7 @@ export const process = {
   env: {
     REACT_APP_BASE_URL: "https://api.trello.com/1/",
     REACT_APP_REDIRECT_URL: "https://trello-ten-ashen.vercel.app/workspace",
-    REACT_APP_API_KEY: "9e3c7d7480a60602b0d309d4dbbfaf20",
+    REACT_APP_API_KEY: "18a78997301a4a18c553d49791f6aae2",
     REACT_APP_EXPIRATION: "1hour",
   },
 };
