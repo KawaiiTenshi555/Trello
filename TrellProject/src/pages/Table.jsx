@@ -168,6 +168,7 @@ function Table() {
                                                 className="fw-4 h-4 mr-4 cursor-pointer hover:rotate-90 duration-300"
                                                 src={delete_button}
                                                 alt="delete button"
+                                                onClick={() => deleteList(singleCards.id)}
                                             />
                                         </div>
                                         {/* Map over cards that contain the singleCard[0].id in their idLabels */}
