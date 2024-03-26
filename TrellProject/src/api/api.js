@@ -3,8 +3,8 @@ import Cookies from "js-cookie";
 export const process = {
   env: {
     REACT_APP_BASE_URL: "https://api.trello.com/1/",
-    REACT_APP_REDIRECT_URL: "https://trello-ten-ashen.vercel.app/workspace",
-    REACT_APP_API_KEY: "18a78997301a4a18c553d49791f6aae2",
+    REACT_APP_REDIRECT_URL: "http://localhost:5173/workspace",
+    REACT_APP_API_KEY: "9e3c7d7480a60602b0d309d4dbbfaf20",
     REACT_APP_EXPIRATION: "1hour",
   },
 };
@@ -16,7 +16,6 @@ export class TrelloAPI {
   }
 
   ////////////////////////////////////// Boards //////////////////////////////////////
-
 
   async createBoard(active) {
     return this.request("post", `/boards/`, {
@@ -58,9 +57,7 @@ export class TrelloAPI {
     return this.request("delete", `/boards/${boardId}`);
   }
 
-
   ////////////////////////////////////// Lists //////////////////////////////////////
-
 
   async createList(boardId) {
     return this.request("post", `/lists?name=template&idBoard=${boardId}`);
@@ -71,7 +68,7 @@ export class TrelloAPI {
   }
 
   async deleteList(listId) {
-    return this.updateList(listId, { closed: true });
+    return this.request("post", `lists/${listId}/archiveAllCards`);
   }
   async getLists(boardId) {
     return this.request("get", `/boards/${boardId}/lists`);
@@ -79,35 +76,37 @@ export class TrelloAPI {
 
   ////////////////////////////////////// Cards //////////////////////////////////////
 
-
-  async getCards(boardId,viewFilter = "all")  {
-    return this.request("get",`/boards/${boardId}/cards?filter=${viewFilter}`);
+  async getCards(boardId, viewFilter = "all") {
+    return this.request("get", `/boards/${boardId}/cards?filter=${viewFilter}`);
   }
   async createCard(listId) {
     return this.request("post", `/cards?idList=${listId}`, {
-      name: 'cardName',
-      desc: 'cardDescription',
+      name: "cardName",
+      desc: "cardDescription",
     });
   }
 
   async updateCard(cardId, newParams) {
-    return this.request("put", `/cards/${cardId}?name=${newParams.name}&desc=${newParams.desc}&id=${cardId}`);
+    return this.request(
+      "put",
+      `/cards/${cardId}?name=${newParams.name}&desc=${newParams.desc}&id=${cardId}`
+    );
   }
 
   async deleteCard(cardId) {
     return this.request("delete", `/cards/${cardId}`);
   }
 
-
   ////////////////////////////////////// Workspace //////////////////////////////////////
-
 
   async deleteWorkspace(workspaceId) {
     return this.request("delete", `/organizations/${workspaceId}`);
   }
 
   async createWorkspace(workspaceName) {
-    return this.request("post", `/organizations/`, { displayName: "workspaceName" });
+    return this.request("post", `/organizations/`, {
+      displayName: "workspaceName",
+    });
   }
 
   async listWorkspaces() {
